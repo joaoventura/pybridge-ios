@@ -92,8 +92,77 @@ If everything is working as expected, the project will compile, although we are 
 References
 - https://www.chilkatsoft.com/xcode-link-static-lib.asp
 - https://www.accusoft.com/resources/blog/using-static-library-ios-app/
+- https://github.com/joaoventura/pybridge-ios/commit/63359cbe28d0b7f305190226a624e48292dbe2a5
+
+
+## Use the Python interpreter
+
+On `ViewController.swift` call the Python function `python()`. It will show the following error in the Xcode output:
+
+```
+Initializing the Python interpreter
+Could not find platform independent libraries <prefix>
+Could not find platform dependent libraries <exec_prefix>
+Consider setting $PYTHONHOME to <prefix>[:<exec_prefix>]
+```
+
+This happens because the python interpreter cannot find the standard library files. We must fix this in two steps: copy the standard library files to the device and setting the python path to find them.
+
+**To copy standard library files**
+
+On Xcode, on the root of PyApp, select **Build Phases** again, and on `Copy Bundle Resources` select the *lib* folder at `/python-for-ios/dist/root/python3/lib`. This will copy the files `python38.zip` (standard library python modules) and all the other files inside lib to the device.
+
+**To set python path**
+
+To set the python path, we must pass the location of the files to the C code. iOS has the concept of bundles. 
+
+On `ViewController.swift`:
+
+```
+python(Bundle.main.resourcePath)
+```
+
+Update the arguments on `pybridge.c and pybridge.h` accordingly:
+
+```
+void python(const char* resourcePath)
+```
+
+Finally, and a big step here, include all the necessary code such that the Python interpreter finds the stdlib files.
+
+```
+void python(const char* resourcePath)
+{
+    printf("Initializing the Python interpreter\n");
+    
+    // Set python home
+    wchar_t *resources = Py_DecodeLocale(resourcePath, NULL);
+    Py_SetPythonHome(resources);
+    
+    // Set paths
+    char paths[10000];
+    snprintf(paths, sizeof(paths),
+             "%s/lib/" \
+             ":%s/lib/python38.zip" \
+             ":%s/lib/python3.8/" \
+             ":%s/lib/python3.8/site-packages",
+             resourcePath, resourcePath, resourcePath, resourcePath);
+    
+    wchar_t *wchar_paths = Py_DecodeLocale(paths, NULL);
+    Py_SetPath(wchar_paths);
+    
+    // Initialize
+    Py_InitializeEx(0);
+    
+    // Run something
+    PyRun_SimpleString("print('Hello from Python')");
+    
+    // Finalize
+    Py_Finalize();
+}
+```
+
+If everything works fine, you should see **Hello from Python** in the Xcode output.
+
+References
 - commit
-
-
-
-

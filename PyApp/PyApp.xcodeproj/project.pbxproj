@@ -18,6 +18,7 @@
 		60881680247FBE2200861E80 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6088167C247FBE2200861E80 /* libffi.a */; };
 		60881681247FBE2200861E80 /* libpython3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6088167D247FBE2200861E80 /* libpython3.a */; };
 		60881683247FBE2F00861E80 /* libz.1.2.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60881682247FBE2F00861E80 /* libz.1.2.8.tbd */; };
+		60881685247FC03300861E80 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 60881684247FC03300861E80 /* lib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		6088167C247FBE2200861E80 /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libffi.a; path = "../python-for-ios/dist/lib/libffi.a"; sourceTree = "<group>"; };
 		6088167D247FBE2200861E80 /* libpython3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpython3.a; path = "../python-for-ios/dist/lib/libpython3.a"; sourceTree = "<group>"; };
 		60881682247FBE2F00861E80 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
+		60881684247FC03300861E80 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = "../python-for-ios/dist/root/python3/lib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 		60881641247FAB3F00861E80 = {
 			isa = PBXGroup;
 			children = (
+				60881684247FC03300861E80 /* lib */,
 				6088164C247FAB3F00861E80 /* PyApp */,
 				6088164B247FAB3F00861E80 /* Products */,
 				60881679247FBE2200861E80 /* Frameworks */,
@@ -158,6 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60881685247FC03300861E80 /* lib in Resources */,
 				60881658247FAB3F00861E80 /* LaunchScreen.storyboard in Resources */,
 				60881655247FAB3F00861E80 /* Assets.xcassets in Resources */,
 				60881653247FAB3F00861E80 /* Main.storyboard in Resources */,

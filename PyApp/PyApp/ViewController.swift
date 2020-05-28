@@ -18,6 +18,9 @@ class ViewController: UIViewController {
         // Greet
         let msg = String(cString: greet("iPhone"))
         label.text = msg
+        
+        // Python
+        python(Bundle.main.resourcePath)
     }
 }
 
