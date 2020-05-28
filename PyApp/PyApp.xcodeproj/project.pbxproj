@@ -13,6 +13,11 @@
 		60881655247FAB3F00861E80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60881654247FAB3F00861E80 /* Assets.xcassets */; };
 		60881658247FAB3F00861E80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60881656247FAB3F00861E80 /* LaunchScreen.storyboard */; };
 		60881662247FB25800861E80 /* pybridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 60881661247FB25800861E80 /* pybridge.c */; };
+		6088167E247FBE2200861E80 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6088167A247FBE2200861E80 /* libcrypto.a */; };
+		6088167F247FBE2200861E80 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6088167B247FBE2200861E80 /* libssl.a */; };
+		60881680247FBE2200861E80 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6088167C247FBE2200861E80 /* libffi.a */; };
+		60881681247FBE2200861E80 /* libpython3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6088167D247FBE2200861E80 /* libpython3.a */; };
+		60881683247FBE2F00861E80 /* libz.1.2.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60881682247FBE2F00861E80 /* libz.1.2.8.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		6088165F247FB25800861E80 /* PyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PyApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		60881660247FB25800861E80 /* pybridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pybridge.h; sourceTree = "<group>"; };
 		60881661247FB25800861E80 /* pybridge.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pybridge.c; sourceTree = "<group>"; };
+		6088167A247FBE2200861E80 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../python-for-ios/dist/lib/libcrypto.a"; sourceTree = "<group>"; };
+		6088167B247FBE2200861E80 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../python-for-ios/dist/lib/libssl.a"; sourceTree = "<group>"; };
+		6088167C247FBE2200861E80 /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libffi.a; path = "../python-for-ios/dist/lib/libffi.a"; sourceTree = "<group>"; };
+		6088167D247FBE2200861E80 /* libpython3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpython3.a; path = "../python-for-ios/dist/lib/libpython3.a"; sourceTree = "<group>"; };
+		60881682247FBE2F00861E80 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +43,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60881683247FBE2F00861E80 /* libz.1.2.8.tbd in Frameworks */,
+				6088167E247FBE2200861E80 /* libcrypto.a in Frameworks */,
+				6088167F247FBE2200861E80 /* libssl.a in Frameworks */,
+				60881680247FBE2200861E80 /* libffi.a in Frameworks */,
+				60881681247FBE2200861E80 /* libpython3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +59,7 @@
 			children = (
 				6088164C247FAB3F00861E80 /* PyApp */,
 				6088164B247FAB3F00861E80 /* Products */,
+				60881679247FBE2200861E80 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +85,18 @@
 				6088165F247FB25800861E80 /* PyApp-Bridging-Header.h */,
 			);
 			path = PyApp;
+			sourceTree = "<group>";
+		};
+		60881679247FBE2200861E80 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60881682247FBE2F00861E80 /* libz.1.2.8.tbd */,
+				6088167A247FBE2200861E80 /* libcrypto.a */,
+				6088167C247FBE2200861E80 /* libffi.a */,
+				6088167D247FBE2200861E80 /* libpython3.a */,
+				6088167B247FBE2200861E80 /* libssl.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,12 +327,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../python-for-ios/dist/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jventura.PyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PyApp/PyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../python-for-ios/dist/root/python3/include/python3.8/**";
 			};
 			name = Debug;
 		};
@@ -320,11 +350,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../python-for-ios/dist/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jventura.PyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PyApp/PyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../python-for-ios/dist/root/python3/include/python3.8/**";
 			};
 			name = Release;
 		};

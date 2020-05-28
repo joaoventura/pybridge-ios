@@ -61,5 +61,39 @@ Copy `dist/lib` and `dist/root` for the root of your project (not inside the Xco
 
 References
 - https://github.com/kivy/kivy-ios
-- commits
+- https://github.com/joaoventura/pybridge-ios/commit/6a06bb770d586a4def589b382d99a10318931b6f
+
+
+## Include Python static libraries
+
+Modify `pybridge.c` and include the following:
+
+```
+#include "Python.h"
+
+void python()
+{
+    printf("Initializing the Python interpreter\n");
+    Py_InitializeEx(0);
+    Py_Finalize();
+}
+```
+
+This will throw a lot of errors in Xcode, such that Xcode must be able to find `Python.h` and all the Python header files, and the static libraries we compiled in the previous step.
+
+On Xcode, on the root of PyApp, select **Build Phases**. On `Link Binary with Libraries` add all the libraries in `python-for-ios/dist/lib` (use "Add Other"). Add also the local framework `libz.1.2.8.tbd` as Python needs some symbols declared there.
+
+On **Build Settings**, on `Search Paths/User Header Search Paths`, add the location of the Python header files: `$(SRCROOT)/../python-for-ios/dist/root/python3/include/python3.8`. Set to find as "recursive".
+
+Finally, still on **Build Settings**, on `Search Paths/Library Search Paths`, add the location of the libraries: `$(SRCROOT)/../python-for-ios/dist/lib`.
+
+If everything is working as expected, the project will compile, although we are not calling the `python()` function.
+
+References
+- https://www.chilkatsoft.com/xcode-link-static-lib.asp
+- https://www.accusoft.com/resources/blog/using-static-library-ios-app/
+- commit
+
+
+
 
