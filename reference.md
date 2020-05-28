@@ -9,7 +9,7 @@ Create an empty Xcode project (Single View Application) named PyApp.
 
 Add a Label to the storyboard and connect it to ViewController.swift (use Ctrl and drag the label from the storyboard to ViewController.swift). Set the label's text in `viewDidLoad` to see something working (`label.text = "Hello World"`) and run it.
 
-Commits
+References
 - https://github.com/joaoventura/pybridge-ios/commit/bdc1a2623c19c724ef475f26190645143d3262ba
 
 
@@ -48,6 +48,18 @@ If everything works fine, you should see the label "Hello iPhone" in the simulat
 
 References
 - https://theswiftdev.com/how-to-call-c-code-from-swift/
-
-Commits
 - https://github.com/joaoventura/pybridge-ios/commit/8330b6e618c0fb13957fec29efb8eb7f05d7fcb0
+
+
+## Compiling Python 3 for iOS
+
+PyBridge-iOS uses the [kivy-ios](https://github.com/kivy/kivy-ios) toolchain to compile the Python static library (libpython3.a) and standard library modules.
+
+Install the kivy-ios toolchain and run `toolchain build python3`. It will create a `build` and `dist` folder. The static libraries needed for the project are in `dist/lib`, the standard library is in `dist/root/python3/lib` and the include files (so that you can `#include "Python.h"` is in `dist/root/python3/include/python3.8`.
+
+Copy `dist/lib` and `dist/root` for the root of your project (not inside the Xcode project!) to a folder called `python-for-ios`. You'll have `python-for-ios/dist/lib` and `python-for-ios/dist/root`.
+
+References
+- https://github.com/kivy/kivy-ios
+- commits
+
