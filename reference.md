@@ -173,4 +173,4 @@ References
 Finally, implement the necessary functions to be able to call a function on the Python interpreter.
 
 Resources
-- commit
+- https://github.com/joaoventura/pybridge-ios/commit/fe3b2aec50e3494a2b5171e27d923c4c97ccab36
