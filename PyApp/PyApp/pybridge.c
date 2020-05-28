@@ -4,15 +4,7 @@
 #include "pybridge.h"
 #include "Python.h"
 
-const char* greet(const char* name)
-{
-    char msg[200];
-    snprintf(msg, sizeof msg, "Hello %s", name);
-    printf("Will return: %s\n", msg);
-    return strdup(msg);
-}
-
-void python(const char* resourcePath)
+void python_start(const char* resourcePath)
 {
     printf("Initializing the Python interpreter\n");
     
@@ -36,8 +28,38 @@ void python(const char* resourcePath)
     Py_InitializeEx(0);
     
     // Run something
-    PyRun_SimpleString("print('Hello from Python')");
-    
-    // Finalize
+    PyRun_SimpleString("import bootstrap");
+}
+
+void python_end()
+{
+    printf("Finalizing the Python interpreter\n");
     Py_Finalize();
+}
+
+const char* python_call(const char* payload)
+{
+    
+    printf("Call into Python interpreter\n");
+    
+    // Import module
+    PyObject* myModuleString = PyUnicode_FromString((char*) "bootstrap");
+    PyObject* myModule = PyImport_Import(myModuleString);
+    
+    // Get reference to the router function
+    PyObject* myFunction = PyObject_GetAttrString(myModule, (char*) "router");
+    PyObject* args = PyTuple_Pack(1, PyUnicode_FromString(payload));
+    
+    // Call function and get the resulting string
+    PyObject* myResult = PyObject_CallObject(myFunction, args);
+    const char *myResultChar = PyUnicode_AsUTF8(myResult);
+    
+    // Cleanup
+    Py_DECREF(myModuleString);
+    Py_DECREF(myModule);
+    Py_DECREF(myFunction);
+    Py_DECREF(args);
+    Py_DECREF(myResult);
+    
+    return myResultChar;
 }

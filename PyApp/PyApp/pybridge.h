@@ -3,7 +3,8 @@
 
 #include <stdio.h>
 
-const char* greet(const char* name);
-void python(const char* resourcePath);
+void python_start(const char* resourcePath);
+void python_end(void);
+const char* python_call(const char* payload);
 
 #endif /* pybridge_h */

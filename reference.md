@@ -165,4 +165,12 @@ void python(const char* resourcePath)
 If everything works fine, you should see **Hello from Python** in the Xcode output.
 
 References
+- https://github.com/joaoventura/pybridge-ios/tree/7922308461956b77d250242bdf0cf5d48db111be
+
+
+## PyBridge routing
+
+Finally, implement the necessary functions to be able to call a function on the Python interpreter.
+
+Resources
 - commit
