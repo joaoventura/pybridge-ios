@@ -9,7 +9,7 @@ Shameless plug: I do contract work, check out my website at http://joaoventura.n
 
 This repository shows the source code of an empty Xcode Swift project with a Label. When the application starts, it starts the Python interpreter and calls a Python function that returns a greet message that is then set on the Label.
 
-![App image](https://github.com/joaoventura/pybridge/blob/master/docs/pybridge-ios.png)
+![App image](https://github.com/joaoventura/pybridge-ios/blob/master/docs/pybridge-ios.png)
 
 
 ## Running the project
