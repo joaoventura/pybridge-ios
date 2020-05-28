@@ -14,7 +14,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        label.text = "Hello World"
+        
+        // Greet
+        let msg = String(cString: greet("iPhone"))
+        label.text = msg
     }
 }
 
