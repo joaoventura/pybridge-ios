@@ -22,7 +22,10 @@ class PyBridge {
         
         // Call the python interpreter
         let res = python_call(reqString)
+        
+        // Convert response to String and free the pointer
         let resString = String(cString: res!)
+        free(UnsafeMutablePointer(res))
         
         // Response
         struct PyBridgeResponse: Codable {

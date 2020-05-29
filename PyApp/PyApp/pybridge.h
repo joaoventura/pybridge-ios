@@ -5,6 +5,6 @@
 
 void python_start(const char* resourcePath);
 void python_end(void);
-const char* python_call(const char* payload);
+char* python_call(const char* payload);
 
 #endif /* pybridge_h */

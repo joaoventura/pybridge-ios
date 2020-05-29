@@ -27,8 +27,11 @@ void python_start(const char* resourcePath)
     // Initialize
     Py_InitializeEx(0);
     
-    // Run something
+    // Bootstrap
     PyRun_SimpleString("import bootstrap");
+    
+    // Cleanup
+    PyMem_RawFree(wchar_paths);
 }
 
 void python_end()
@@ -37,9 +40,8 @@ void python_end()
     Py_Finalize();
 }
 
-const char* python_call(const char* payload)
+char* python_call(const char* payload)
 {
-    
     printf("Call into Python interpreter\n");
     
     // Import module
@@ -60,6 +62,10 @@ const char* python_call(const char* payload)
     Py_DECREF(myFunction);
     Py_DECREF(args);
     Py_DECREF(myResult);
-    
-    return myResultChar;
+
+    // Return result
+    unsigned long len = strlen(myResultChar);
+    const char *result = malloc(sizeof(char *) * len);
+    snprintf(result, len+1, "%s", myResultChar);
+    return strdup(result);
 }
