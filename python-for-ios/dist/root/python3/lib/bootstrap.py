@@ -28,7 +28,7 @@ def router(args):
         res = function(values)
     except KeyError:
         status = 'fail'
-        res = None
+        res = 'error'
 
     return json.dumps({
         'status': status,
