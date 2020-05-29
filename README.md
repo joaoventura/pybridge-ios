@@ -23,4 +23,4 @@ Run the project and you should see a `Hello Python 3.8` message in the screen. Y
 
 I've documented all the process in the [references document](https://github.com/joaoventura/pybridge-ios/blob/master/docs/references.md). It shows how to compile a Python  3 distribution, how to include the libraries, and how everything works. 
 
-It's mostly a document for myself, but you use and learn from it!
+It's mostly a document for myself, but you can use and learn from it!
